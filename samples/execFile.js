@@ -11,8 +11,10 @@ if (process.argv.length <= 2) {
     console.error("        " + file);
   });
 } else {
-  console.error('Executing "' + process.argv[2] + '"');
-  applescript.execFile(process.argv[2], process.argv.slice(3), function(err, rtn) {
+  var opts = process.argv.slice(3);
+  var path = process.argv[2];
+  console.error('Executing "' + path + '"', 'with opt arg = ', opts);
+  applescript.execFile(path, opts, function(err, rtn) {
     console.error('    DONE!\n');
     if (err) {
       // Something went wrong!
@@ -22,5 +24,5 @@ if (process.argv.length <= 2) {
       // If we got here, then there's probably some worthy content.
       console.error(rtn);
     }
-  });  
+  });
 }
